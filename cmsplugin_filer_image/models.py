@@ -46,7 +46,7 @@ class FilerImage(CMSPlugin):
         _("use the original image"), default=False,
         help_text=_('do not resize the image. use the original image instead.'))
     thumbnail_option = models.ForeignKey(
-        'filer.ThumbnailOption', null=True, blank=True, verbose_name=_("thumbnail option"),
+        'filer.ThumbnailOption', on_delete=models.CASCADE, null=True, blank=True, verbose_name=_("thumbnail option"),
         help_text=_('overrides width, height, crop and upscale with values from the selected thumbnail option'))
     use_autoscale = models.BooleanField(_("use automatic scaling"), default=False,
                                         help_text=_('tries to auto scale the image based on the placeholder context'))
@@ -78,6 +78,7 @@ class FilerImage(CMSPlugin):
                                       help_text=_('Optional. Adds HTML attributes to the rendered link.'))
     cmsplugin_ptr = models.OneToOneField(
         to=CMSPlugin,
+        on_delete=models.CASCADE,
         related_name='%(app_label)s_%(class)s',
         parent_link=True,
     )

@@ -25,6 +25,7 @@ class FilerFolder(CMSPlugin):
         _('Style'), choices=STYLE_CHOICES, default=DEFAULT_STYLE, max_length=50)
     cmsplugin_ptr = models.OneToOneField(
         to=CMSPlugin,
+        on_delete=models.CASCADE,
         related_name='%(app_label)s_%(class)s',
         parent_link=True,
     )
